@@ -1,0 +1,32 @@
+:root { --bg: #f6f7f9; --card: #fff; --text: #1d2330; --muted: #667085; --line: #e4e7ec; --accent: #2f6fed; --danger: #c0362c; --ok: #16794c; --warn: #9a6400; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #11141a; --card: #1a1f27; --text: #e6e9ef; --muted: #98a2b3; --line: #2b323d; --accent: #6d9bff; --danger: #ff7b6e; --ok: #4cc38a; --warn: #f2b84b; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.5 system-ui, sans-serif; background: var(--bg); color: var(--text); }
+header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--line); background: var(--card); }
+h1 { font-size: 18px; margin: 0; }
+h2 { font-size: 16px; margin: 0 0 10px; }
+nav { display: flex; flex-wrap: wrap; gap: 6px; }
+main { max-width: 1000px; margin: 0 auto; padding: 16px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-bottom: 16px; overflow-x: auto; }
+button { font: inherit; border: 1px solid var(--accent); background: var(--accent); color: #fff; border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+button.ghost, nav button { background: transparent; color: var(--text); border-color: var(--line); }
+nav button.active { border-color: var(--accent); color: var(--accent); }
+button.danger { background: var(--danger); border-color: var(--danger); }
+button:disabled { opacity: .5; cursor: progress; }
+input, select, textarea { font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; width: 100%; }
+textarea { font-family: ui-monospace, monospace; font-size: 13px; margin: 6px 0; }
+label { display: block; margin-bottom: 8px; }
+form#login-form { display: flex; gap: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; border-bottom: 1px solid var(--line); padding: 6px 8px; vertical-align: top; }
+code, .mono { font-family: ui-monospace, monospace; font-size: 13px; }
+.muted { color: var(--muted); }
+.error { color: var(--danger); }
+.badge { display: inline-block; border-radius: 99px; padding: 0 8px; font-size: 12px; border: 1px solid currentColor; }
+.ALLOW, .executed, .active { color: var(--ok); }
+.ESCALATE, .held, .pending, .draft, .paused { color: var(--warn); }
+.BLOCK, .blocked, .failed, .rejected, .poll_error { color: var(--danger); }
+.row-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+pre { white-space: pre-wrap; word-break: break-word; margin: 0; }

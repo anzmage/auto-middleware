@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auto Middleware</title>
+<link rel="stylesheet" href="/style.css">
+<script src="/app.js" defer></script>
+</head>
+<body>
+<header>
+  <h1>Auto Middleware</h1>
+  <nav id="tabs" hidden>
+    <button data-tab="workflows" class="active">Workflows</button>
+    <button data-tab="connectors">Connectors</button>
+    <button data-tab="approvals">Approvals <span id="pending-count"></span></button>
+    <button data-tab="runs">Run log</button>
+    <button id="logout" class="ghost">Sign out</button>
+  </nav>
+</header>
+
+<main>
+  <section id="login" class="card">
+    <h2>Sign in</h2>
+    <p>Enter the <code>ADMIN_TOKEN</code> from your <code>.env</code>. It stays in this browser tab only.</p>
+    <form id="login-form"><input id="token" type="password" autocomplete="current-password" placeholder="Admin token" required><button>Sign in</button></form>
+    <p id="login-error" class="error"></p>
+  </section>
+
+  <section id="workflows" class="tab" hidden>
+    <div class="card">
+      <h2>1. Describe the rule</h2>
+      <p class="muted">Example: <em>When a new row appears in the orders table of shop_db, append the order id, customer and total to the Orders tab of sheet 1AbC…, then POST it to notify.</em></p>
+      <textarea id="rule" rows="3" placeholder="When …, then …"></textarea>
+      <button id="plan">Generate workflow</button> <span id="plan-status" class="muted"></span>
+    </div>
+    <div class="card" id="review" hidden>
+      <h2>2. Review before saving</h2>
+      <p class="muted">The model only proposes. Check the trigger, every mapped field and the safety policy of each step. Writes wait for approval unless you set <code>"policy": "auto"</code>.</p>
+      <div id="preview"></div>
+      <details><summary>Edit JSON</summary><textarea id="definition" rows="16" spellcheck="false"></textarea></details>
+      <button id="validate" class="ghost">Validate</button>
+      <button id="save">Save as draft</button>
+      <ul id="review-errors" class="error"></ul>
+    </div>
+    <div class="card">
+      <h2>Workflows</h2>
+      <div id="workflow-list"></div>
+    </div>
+  </section>
+
+  <section id="connectors" class="tab" hidden>
+    <div class="card">
+      <h2>Add or update a connector</h2>
+      <form id="connector-form">
+        <label>Name <input id="c-name" required pattern="[a-z0-9][a-z0-9_-]{0,39}" placeholder="shop_db"></label>
+        <label>Type <select id="c-type"></select></label>
+        <div id="c-fields"></div>
+        <button>Save connector</button> <span id="c-status" class="muted"></span>
+      </form>
+      <p class="muted">Secrets are never stored here: give the <em>name</em> of an environment variable or a file path.</p>
+    </div>
+    <div class="card"><h2>Connectors</h2><div id="connector-list"></div></div>
+    <div class="card" id="schema-card" hidden><h2 id="schema-title">Schema</h2><div id="schema"></div></div>
+  </section>
+
+  <section id="approvals" class="tab" hidden>
+    <div class="card"><h2>Waiting for approval</h2><div id="approval-list"></div></div>
+  </section>
+
+  <section id="runs" class="tab" hidden>
+    <div class="card"><h2>Run log</h2><button id="poll-now" class="ghost">Poll now</button><div id="run-list"></div></div>
+  </section>
+</main>
+</body>
+</html>

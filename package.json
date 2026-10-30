@@ -1,0 +1,18 @@
+{
+  "name": "auto-middleware",
+  "version": "0.1.0",
+  "description": "Minimal AI integration middleware: describe a rule in plain language, review the generated workflow, run it deterministically with approval gates.",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning src/server.ts",
+    "test": "node --disable-warning=ExperimentalWarning --test \"test/**/*.test.ts\"",
+    "test:mysql": "bash scripts/test-mysql.sh",
+    "smoke:llm": "node --disable-warning=ExperimentalWarning scripts/llm-smoke.ts"
+  },
+  "dependencies": {
+    "mysql2": "^3.11.0"
+  }
+}

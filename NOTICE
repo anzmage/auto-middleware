@@ -1,0 +1,38 @@
+Auto Middleware
+Copyright (c) 2026 ZaidanLab. Licensed under the MIT License (see LICENSE).
+
+This project was written from scratch. No source code was copied from the projects
+below; it borrows ideas and design patterns from them, credited here.
+
+toolsmelt
+  https://github.com/sepehr071/toolsmelt (MIT)
+  Borrowed: introspect an existing system first (database schema, API spec) and design a
+  small set of reviewed actions from it instead of exposing everything; strict schemas where
+  unknown keys are errors; read-only vs write separation; secrets referenced by env var name.
+
+Pomerado
+  https://github.com/Pomerado/pomerado (MIT)
+  Borrowed: the planned website adapter's approach (explore a site, complete one worked
+  example, generalise it into a deterministic integration instead of live computer use).
+  Only the connector slot exists in this version.
+
+LoomFlow
+  https://github.com/banmu123/LoomFlow (MIT)
+  Borrowed: natural language -> runnable workflow JSON that a person reviews and edits before
+  it runs; a single registry as the source of truth for what nodes/actions exist, validated
+  automatically.
+
+agent-safe-pipeline (Decionis AgentSafe)
+  https://github.com/decionis/agent-safe-pipeline (Apache-2.0)
+  Borrowed: a gate in front of every consequential action with three outcomes
+  (ALLOW / ESCALATE / BLOCK), fail-closed defaults, approvals bound to the exact action
+  payload and executed at most once, and a decision record for every action.
+
+google-docs-markdown-sync
+  https://github.com/rsheyd/google-docs-markdown-sync (MIT)
+  Borrowed: keep machine state (cursors, hashes) out of the user's documents, track what
+  was already synced so retries do not duplicate rows, and treat the sheet's header row as
+  the stable mapping contract.
+
+Runtime dependency
+  mysql2 (MIT) https://github.com/sidorares/node-mysql2

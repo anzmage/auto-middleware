@@ -1,0 +1,14 @@
+services:
+  auto-middleware:
+    build: .
+    env_file: .env
+    environment:
+      HOST: 0.0.0.0
+      DB_PATH: /data/auto-middleware.sqlite
+    ports:
+      - "127.0.0.1:8790:8790"
+    volumes:
+      - am-data:/data
+    restart: unless-stopped
+volumes:
+  am-data:
